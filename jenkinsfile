@@ -1,5 +1,6 @@
 pipeline {
     agent any
+
     environment {
         AZURE_CREDENTIALS_ID = 'azure-service-principal-3'
         RESOURCE_GROUP = 'rg-jenkins'
@@ -23,22 +24,21 @@ pipeline {
 
         stage('Test Terraform') {
             steps {
-                  dir('terraform_intregated') {
-                      bat 'terraform --version'
-                   }
+                dir('terraform_intregated') {
+                    bat 'terraform --version'
+                }
             }
         }
-           
-        stage("terraform setup"){
-            steps {
-               dir("terraform_intregated"){
-                   bat 'terraform init'
-                   bat 'terraform plan -out=tfplan'
-                   bat 'terraform apply -auto-approve tfplan'
-               }
 
-            }
-        }
+        stage("terraform setup") {
+            steps {
+                dir("terraform_intregated") {
+                    bat 'terraform init'
+                    bat 'terraform plan -out=tfplan'
+                    bat 'terraform apply -auto-approve tfplan'
+                }
+            }
+        }
 
         stage('Deploy') {
             steps {
