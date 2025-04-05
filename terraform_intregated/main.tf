@@ -4,7 +4,7 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "rgas" {
-  name     = rg-jenkins
+  name     = "rg-jenkins"
   location = "West Europe"
 }
 
