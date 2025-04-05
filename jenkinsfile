@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        AZURE_CREDENTIALS_ID = 'azure-service-principal'
+        AZURE_CREDENTIALS_ID = 'azure-service-principal-3'
         RESOURCE_GROUP = 'rg-jenkins'
         APP_SERVICE_NAME = 'integrated-dot-net' // must be unique
     }
@@ -23,7 +23,7 @@ pipeline {
 
         stage('Test Terraform') {
             steps {
-                  dir('terraform323') {
+                  dir('terraform_intregated') {
                       bat 'terraform --version'
                    }
             }
@@ -31,7 +31,7 @@ pipeline {
            
         stage("terraform setup"){
             steps {
-               dir("terraform323"){
+               dir("terraform_intregated"){
                    bat 'terraform init'
                    bat 'terraform plan -out=tfplan'
                    bat 'terraform apply -auto-approve tfplan'
