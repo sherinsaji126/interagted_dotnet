@@ -20,7 +20,7 @@ resource "azurerm_app_service_plan" "app_service_plan" {
 }
 
 resource "azurerm_app_service" "my-app_service" {
-  name                = "sherin-new-app-service"
+  name                = "integrated-dot-net"
   location            = azurerm_resource_group.rgas.location
   resource_group_name = azurerm_resource_group.rgas.name
   app_service_plan_id = azurerm_app_service_plan.app_service_plan.id
